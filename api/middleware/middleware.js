@@ -5,8 +5,8 @@ function logger(req, res, next) {
   // DO YOUR MAGIC
   // logs to the console the following information about each request: request method, request url, and a timestamp
   console.log(`
-    ${req.method}
-    ${req.baseUrl}
+    ${req.method} ${req.originalUrl}
+    ${new Date().toLocaleString()}
   `);
   next();
 }
@@ -44,9 +44,11 @@ async function validateUser (req, res, next) {
   Users.insert(req.body)
     .then(user => {
       res.status(200).json(user);
+      next(user);
     })
     .catch(error => {
       console.log(error);
+      next(error);
     })
 }
 

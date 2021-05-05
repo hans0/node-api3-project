@@ -15,7 +15,7 @@ const {
 const router = express.Router();
 
 
-router.get('/', logger, (req, res, next) => {
+router.get('/',  (req, res, next) => {
   // RETURN AN ARRAY WITH ALL THE USERS
   Users.get(req.query)
     .then(users => {
